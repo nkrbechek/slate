@@ -84,7 +84,7 @@ $ browser-sync init
 $ browser-sync start --config bs-config.js
 
 ```
-In the config file, you can customize many options to your server, including port, watchOptions, server, proxy, scrolling, and throttling. 
+In the config file, you can customize many options to your server, including port, watchOptions, server, proxy, scrolling, and throttling.
 
 `--config` and `-c` are interchangeable.
 
@@ -100,10 +100,10 @@ To watch multiple files, use a config file.
 # Detailed Command Line Options
 
 ```shell
-# Command: 
+# Command:
 $ browser-sync start --help
 ```
-Options       | Description 
+Options       | Description
 --------------|-------------
 `--server, -s` |	Run a Local server (uses your cwd as the web root)
 `--serveStatic, --ss` |	Directories to serve static files from
@@ -221,7 +221,7 @@ $ browser-sync init
 $ browser-sync start --config bs-config.js
 
 ```
-In the config file, you can customize many options to your server, including port, watchOptions, server, proxy, scrolling, and throttling. 
+In the config file, you can customize many options to your server, including port, watchOptions, server, proxy, scrolling, and throttling.
 
 `--config` and `-c` are interchangeable.
 
@@ -237,10 +237,10 @@ To watch multiple files, use a config file.
 # Detailed Command Line Options
 
 ```shell
-# Command: 
+# Command:
 $ browser-sync start --help
 ```
-Options       | Description 
+Options       | Description
 --------------|-------------
 `--server, -s` |	Run a Local server (uses your cwd as the web root)
 `--serveStatic, --ss` |	Directories to serve static files from
