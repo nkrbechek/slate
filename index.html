@@ -234,7 +234,7 @@
 <li><strong>Install Browsersync</strong> With Node.js installed, you can use the Node.js package manager (npm) to install Browsersync from a repository. Open a terminal window and run the following command:</li>
 </ol>
 
-<p>This tells the package manager to download the Browsersync files and install them globally (<code class="prettyprint">-g</code>) so theyâre available to all your projects.</p>
+<p>This tells the package manager to download the Browsersync files and install them globally (<code class="prettyprint">-g</code>) so they&#39;re available to all your projects.</p>
 
 <h1 id="quick-start">Quick Start</h1>
 
@@ -265,7 +265,8 @@
 <p><a href="#detailed-command-line-options">Here is the complete list of Command Line options for <code class="prettyprint">browser-sync start</code></a></p>
 
 <h2 id="watch-files-other-than-index-html">Watch files other than &lsquo;index.html&rsquo;</h2>
-<pre class="highlight shell tab-shell"><code><span class="gp">$ </span>browser-sync start -s -f â.â --index âmyOtherHtmlFile.htmlâ
+<pre class="highlight shell tab-shell"><code><span class="gp">$ </span>browser-sync start -s -f “.” --index “myOtherHtmlFile.html”
+
 </code></pre>
 <p>The <code class="prettyprint">--index</code> option allows you to direct Browsersync to watch a file other than the default <code class="prettyprint">index.html</code>.</p>
 
@@ -274,13 +275,13 @@
 <h2 id="create-a-proxy-for-existing-servers-or-dynamic-sites">Create a Proxy for Existing Servers or Dynamic Sites</h2>
 <pre class="highlight shell tab-shell"><code><span class="gp">$ </span>browser-sync start --proxy <span class="s2">"myproject.dev"</span> --files <span class="s2">"css/*.css"</span>
 </code></pre>
-<p>If youâre already running a local server with PHP or similar, youâll need to use the proxy mode. Browsersync will wrap your vhost with a proxy URL to view your site.</p>
+<p>If you’re already running a local server with PHP or similar, you’ll need to use the proxy mode. Browsersync will wrap your vhost with a proxy URL to view your site.</p>
 
 <h2 id="make-a-config-file">Make a Config File</h2>
 <pre class="highlight shell tab-shell"><code><span class="c"># Initialize your config file:</span>
 <span class="gp">$ </span>browser-sync init
 
-<span class="c"># Your terminalâs output should look similar to the following:</span>
+<span class="c"># Your terminal’s output should look similar to the following:</span>
   <span class="o">[</span>BS] Config file created bs-config.js
   <span class="o">[</span>BS] To use it, <span class="k">in </span>the same directory run: browser-sync start --config bs-config.js
 
@@ -298,7 +299,7 @@
 
 <ol>
 <li><p>Follow the instructions to make a config file (below)</p></li>
-<li><p>In the <code class="prettyprint">âfilesâ</code> portion of the config file (around line 22), replace <code class="prettyprint">false</code> with files: <code class="prettyprint">[&quot;file1.html&quot;, &quot;file2.css&quot;, âfile3.jsâ]</code>, and so on.</p></li>
+<li><p>In the <code class="prettyprint">“files”</code> portion of the config file (around line 22), replace <code class="prettyprint">false</code> with files: <code class="prettyprint">[&quot;file1.html&quot;, &quot;file2.css&quot;, “file3.js”]</code>, and so on.</p></li>
 <li><p>For detailed instructions on config file options, visit <a href="https://www.browsersync.io/docs/options/#option-files">https://www.browsersync.io/docs/options/#option-files</a></p></li>
 </ol>
 
