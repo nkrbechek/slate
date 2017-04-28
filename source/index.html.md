@@ -1,189 +1,137 @@
 ---
-title: API Reference
+title: Browsersync command line help
 
 language_tabs:
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - errors
+  - <a href='https://www.browsersync.io/'>Go to Browser-sync's website</a>
+  - <a href='https://github.ucsb.edu/arda/browsersync_cmdline_docs/blob/master/Technical_Justification_Essay.md'>Justification Essay</a>
 
 search: true
 ---
 
-# Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+# Install
+```shell
+npm install -g browser-sync
 ```
+1. **Install Node.js.** Browsersync is a module for Node.js, a platform for fast network applications. To run Browsersync, you must have Node.js installed; [Node.js installers for MacOS, Windows and Linux can be found here](http://nodejs.org/download/).
+2. **Install Browsersync** With Node.js installed, you can use the Node.js package manager (npm) to install Browsersync from a repository. Open a terminal window and run the following command:
 
-```python
-import kittn
+This tells the package manager to download the Browsersync files and install them globally (`-g`) so they’re available to all your projects.
 
-api = kittn.authorize('meowmeowmeow')
-```
+
+
+# Quick Start
+
+## BrowserSync as 'Hot Reload' Server for local Static Files
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+#Command
+browser-sync start --server --files “.”
+#Your terminal output should look similar to this:
+ browser-sync start --server --files "."
+ [BS] Access URLs:
+ ----------------------------------------
+       Local: http://localhost:3000
+    External: http://168.000.111.222:3000
+ ----------------------------------------
+          UI: http://localhost:3001
+ UI External: http://168.000.111.222:3001
+ ----------------------------------------
+ [BS] Serving files from: ./
+ [BS] Watching files...
+```
+The simplest use of browsersync is to watch `index.html` in your current directory. Browsersync expects `index.html` to exist, and will watch it by default.
+
+`--server, -s` causes browser-sync to create a server and allow access to the specified files through localhost.
+
+`--files, -f` is used to specify the file path that Browsersync should look for `index.html`.
+
+Upon execution, this will open your default web browser and watch for changes in `index.html`. When you edit `index.html`, upon saving, Browser-sync will reload your browser to display the latest version.
+
+[Here is the complete list of Command Line options for `browser-sync start`](#detailed-command-line-options)
+
+## Watch files other than 'index.html'
+```shell
+browser-sync start -s -f “.” --index “myOtherHtmlFile.html”
+```
+The `--index` option allows you to direct Browsersync to watch a file other than the default `index.html`.
+
+<b>NOTE:</b> that the abbreviation `-i` *does not exist*! You must fully write out `--index` to use this option.
+
+
+
+## Create a Proxy for Existing Servers or Dynamic Sites
+```shell
+browser-sync start --proxy "myproject.dev" --files "css/*.css"
 ```
 
-```javascript
-const kittn = require('kittn');
+If you’re already running a local server with PHP or similar, you’ll need to use the proxy mode. Browsersync will wrap your vhost with a proxy URL to view your site.
 
-let api = kittn.authorize('meowmeowmeow');
+
+## Make a Config File
+```shell
+#Initialize your config file:
+Browser-sync init
+
+#Your terminal’s output should look similar to the following:
+[BS] Config file created bs-config.js
+[BS] To use it, in the same directory run: browser-sync start --config bs-config.js
+
+#To run Browser-sync with settings from the config file:
+browser-sync start --config bs-config.js
+
 ```
+In the config file, you can customize many options to your server, including port, watchOptions, server, proxy, scrolling, and throttling. 
 
-> Make sure to replace `meowmeowmeow` with your API key.
+`--config` and `-c` are interchangeable.
+#Watch Multiple Files
+To watch multiple files, use a config file.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+1. Follow the instructions to make a config file (below)
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+2. In the `“files”` portion of the config file (around line 22), replace `false` with files: `["file1.html", "file2.css", “file3.js”]`, and so on.
 
-`Authorization: meowmeowmeow`
+3. For detailed instructions on config file options, visit [https://www.browsersync.io/docs/options/#option-files](https://www.browsersync.io/docs/options/#option-files)
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+#Detailed Command Line Options
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+#Command: 
+browser-sync start --help
 ```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
+Options       | Description 
+--------------|-------------
+`--server, -s` |	Run a Local server (uses your cwd as the web root)
+`--serveStatic, --ss` |	Directories to serve static files from
+`--port` |	Specify a port to use
+`--proxy, -p` |	Proxy an existing server
+`--ws` |	Proxy mode only - enable websocket proxying
+`--browser, -b` |	Choose which browser should be auto-opened
+`--files, -f` |	File paths to watch
+`--index` |	Specify which file should be used as the index page
+`--plugins` |	Load Browsersync plugins
+`--extensions` |	Specify file extension fallbacks
+`--startPath` |	Specify the start path for the opened browser
+`--https` |	Enable SSL for local development
+`--directory` |	Show a directory listing for the server
+`--xip` |	Use xip.io domain routing
+`--tunnel` |	Use a public URL
+`--open` |	Choose which URL is auto-opened (local, external or tunnel), or provide a url
+`--cors` |	Add Access Control headers to every request
+`--config, -c` |	Specify a path to a configuration file
+`--host` |	Specify a hostname to use
+`--logLevel` |	Set the logger output level (silent, info or debug)
+`--reload-delay` |	Time in milliseconds to delay the reload event following file changes
+`--reload-debounce` |	Restrict the frequency in which browser:reload events can be emitted to connected clients
+`--ui-port` |	Specify a port for the UI to use
+`--watchEvents` |	Specify which file events to respond to
+`--no-notify` |	Disable the notify element in browsers
+`--no-open` |	Don't open a new browser window
+`--no-online` |	Force offline usage
+`--no-ui` |	Don't start the user interface
+`--no-ghost-mode`  |	Disable Ghost Mode
+`--no-inject-changes` |	Reload on every file change
+`--no-reload-on-restart` |	Don't auto-reload all browsers following a restart
