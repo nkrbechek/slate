@@ -19,7 +19,7 @@ $ npm install -g browser-sync
 1. **Install Node.js.** Browsersync is a module for Node.js, a platform for fast network applications. To run Browsersync, you must have Node.js installed; [Node.js installers for MacOS, Windows and Linux can be found here](http://nodejs.org/download/).
 2. **Install Browsersync** With Node.js installed, you can use the Node.js package manager (npm) to install Browsersync from a repository. Open a terminal window and run the following command:
 
-This tells the package manager to download the Browsersync files and install them globally (`-g`) so theyâre available to all your projects.
+This tells the package manager to download the Browsersync files and install them globally (`-g`) so they're available to all your projects.
 
 
 
@@ -55,7 +55,8 @@ Upon execution, this will open your default web browser and watch for changes in
 
 ## Watch files other than 'index.html'
 ```shell
-$ browser-sync start -s -f â.â --index âmyOtherHtmlFile.htmlâ
+$ browser-sync start -s -f “.” --index “myOtherHtmlFile.html”
+
 ```
 The `--index` option allows you to direct Browsersync to watch a file other than the default `index.html`.
 
@@ -68,7 +69,8 @@ The `--index` option allows you to direct Browsersync to watch a file other than
 $ browser-sync start --proxy "myproject.dev" --files "css/*.css"
 ```
 
-If youâre already running a local server with PHP or similar, youâll need to use the proxy mode. Browsersync will wrap your vhost with a proxy URL to view your site.
+If you’re already running a local server with PHP or similar, you’ll need to use the proxy mode. Browsersync will wrap your vhost with a proxy URL to view your site.
+
 
 
 ## Make a Config File
@@ -76,7 +78,7 @@ If youâre already running a local server with PHP or similar, youâll n
 # Initialize your config file:
 $ browser-sync init
 
-# Your terminalâs output should look similar to the following:
+# Your terminal’s output should look similar to the following:
   [BS] Config file created bs-config.js
   [BS] To use it, in the same directory run: browser-sync start --config bs-config.js
 
@@ -93,7 +95,7 @@ To watch multiple files, use a config file.
 
 1. Follow the instructions to make a config file (below)
 
-2. In the `âfilesâ` portion of the config file (around line 22), replace `false` with files: `["file1.html", "file2.css", âfile3.jsâ]`, and so on.
+2. In the `“files”` portion of the config file (around line 22), replace `false` with files: `["file1.html", "file2.css", “file3.js”]`, and so on.
 
 3. For detailed instructions on config file options, visit [https://www.browsersync.io/docs/options/#option-files](https://www.browsersync.io/docs/options/#option-files)
 
